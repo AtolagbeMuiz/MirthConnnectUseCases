@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>Discharge Summary Doc Transfer</name>
   <description></description>
-  <revision>2</revision>
+  <revision>9</revision>
   <sourceConnector version="4.5.2">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -210,6 +210,16 @@ return;</undeployScript>
         <type>STRING</type>
         <mappingName>mirth_type</mappingName>
       </metaDataColumn>
+      <metaDataColumn>
+        <name>SOURCE_FILEPATH</name>
+        <type>STRING</type>
+        <mappingName>fileDirectory</mappingName>
+      </metaDataColumn>
+      <metaDataColumn>
+        <name>FILENAME</name>
+        <type>STRING</type>
+        <mappingName>originalFilename</mappingName>
+      </metaDataColumn>
     </metaDataColumns>
     <attachmentProperties version="4.5.2">
       <className>com.mirth.connect.server.attachments.identity.IdentityAttachmentHandlerProvider</className>
@@ -227,7 +237,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1754588851565</time>
+        <time>1754601333502</time>
         <timezone>Europe/London</timezone>
       </lastModified>
       <pruningSettings>
@@ -236,6 +246,5 @@ return;</undeployScript>
       </pruningSettings>
       <userId>1</userId>
     </metadata>
-    <channelTags/>
   </exportData>
 </channel>
