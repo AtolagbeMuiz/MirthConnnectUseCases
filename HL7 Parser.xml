@@ -1,16 +1,16 @@
 <channel version="4.5.2">
   <id>b64200bb-2f1e-4679-9599-0b325be0a708</id>
   <nextMetaDataId>2</nextMetaDataId>
-  <name>HL7 Message Processor</name>
+  <name>HL7 Parser</name>
   <description></description>
-  <revision>1</revision>
+  <revision>3</revision>
   <sourceConnector version="4.5.2">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
     <properties class="com.mirth.connect.connectors.vm.VmReceiverProperties" version="4.5.2">
       <pluginProperties/>
       <sourceConnectorProperties version="4.5.2">
-        <responseVariable>None</responseVariable>
+        <responseVariable>Auto-generate (Destinations completed)</responseVariable>
         <respondAfterProcessing>true</respondAfterProcessing>
         <processBatch>false</processBatch>
         <firstResponse>false</firstResponse>
@@ -25,7 +25,50 @@
       </sourceConnectorProperties>
     </properties>
     <transformer version="4.5.2">
-      <elements/>
+      <elements>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.2">
+          <name>Surname</name>
+          <sequenceNumber>0</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>Surname</variable>
+          <mapping>msg[&apos;PID&apos;][&apos;PID.5&apos;][&apos;PID.5.1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.2">
+          <name>FirstName</name>
+          <sequenceNumber>1</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>FirstName</variable>
+          <mapping>msg[&apos;PID&apos;][&apos;PID.5&apos;][&apos;PID.5.2&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.2">
+          <name>Address</name>
+          <sequenceNumber>2</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>Address</variable>
+          <mapping>msg[&apos;PID&apos;][&apos;PID.11&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep version="4.5.2">
+          <name>DOB</name>
+          <sequenceNumber>3</sequenceNumber>
+          <enabled>true</enabled>
+          <variable>DOB</variable>
+          <mapping>msg[&apos;PID&apos;][&apos;PID.7&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+      </elements>
+      <inboundTemplate encoding="base64">TVNIfF5+XCZ8U0VORElOR19BUFBMSUNBVElPTnxTRU5ESU5HX0ZBQ0lMSVRZfFJFQ0VJVklOR19BUFBMSUNBVElPTnxSRUNFSVZJTkdfRkFDSUxJVFl8MjAxMTA2MTMwODM2MTd8fEFEVF5BMDR8OTM0NTc2MTIwMTEwNjEzMDgzNjE3fFB8Mi4zfHx8fApFVk58QTA0fDIwMTEwNjEzMDgzNjE3fHx8ClBJRHwxfHwxMzU3Njl8fE1PVVNFXk1JQ0tFWV58fDE5MjgxMTE4fE18fHwxMjMgTWFpbiBTdC5eXkxha2UgQnVlbmEgVmlzdGFeRkxeMzI4MzB8fCg0MDcpOTM5LTEyODleXl50aGVNYWluTW91c2VAZGlzbmV5LmNvbXx8fHx8MTcxOXw5OTk5OTk5OXx8fHx8fHx8fHx8fHx8fHx8fHx8ClBWMXwxfE98fHx8fDdeRGlzbmV5XldhbHReXk1EXl5eXnx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fA==</inboundTemplate>
+      <outboundTemplate encoding="base64"></outboundTemplate>
       <inboundDataType>HL7V2</inboundDataType>
       <outboundDataType>HL7V2</outboundDataType>
       <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="4.5.2">
@@ -369,7 +412,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1754600193649</time>
+        <time>1754743486819</time>
         <timezone>Europe/London</timezone>
       </lastModified>
       <pruningSettings>
