@@ -3,7 +3,7 @@
   <nextMetaDataId>2</nextMetaDataId>
   <name>Discharge Summary Doc Transfer</name>
   <description></description>
-  <revision>9</revision>
+  <revision>11</revision>
   <sourceConnector version="4.5.2">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -108,14 +108,14 @@
     <connector version="4.5.2">
       <metaDataId>1</metaDataId>
       <name>Destination 1</name>
-      <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="4.5.2">
+      <properties class="com.mirth.connect.connectors.file.FileDispatcherProperties" version="4.5.2">
         <pluginProperties/>
         <destinationConnectorProperties version="4.5.2">
           <queueEnabled>false</queueEnabled>
           <sendFirst>false</sendFirst>
           <retryIntervalMillis>10000</retryIntervalMillis>
           <regenerateTemplate>false</regenerateTemplate>
-          <retryCount>0</retryCount>
+          <retryCount>2</retryCount>
           <rotate>false</rotate>
           <includeFilterTransformer>false</includeFilterTransformer>
           <threadCount>1</threadCount>
@@ -130,9 +130,24 @@
           <queueBufferSize>1000</queueBufferSize>
           <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
-        <channelId>none</channelId>
-        <channelTemplate>${message.encodedData}</channelTemplate>
-        <mapVariables/>
+        <scheme>FILE</scheme>
+        <host>C:/Users/Ololade/Downloads/DischargeDoc/Destination</host>
+        <outputPattern>sent_${originalFilename}</outputPattern>
+        <anonymous>true</anonymous>
+        <username>anonymous</username>
+        <password>anonymous</password>
+        <timeout>10000</timeout>
+        <keepConnectionOpen>true</keepConnectionOpen>
+        <maxIdleTime>0</maxIdleTime>
+        <secure>true</secure>
+        <passive>true</passive>
+        <validateConnection>true</validateConnection>
+        <outputAppend>false</outputAppend>
+        <errorOnExists>false</errorOnExists>
+        <temporary>false</temporary>
+        <binary>true</binary>
+        <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+        <template>${message.transformedData}</template>
       </properties>
       <transformer version="4.5.2">
         <elements/>
@@ -171,7 +186,7 @@
       <filter version="4.5.2">
         <elements/>
       </filter>
-      <transportName>Channel Writer</transportName>
+      <transportName>File Writer</transportName>
       <mode>DESTINATION</mode>
       <enabled>true</enabled>
       <waitForPrevious>true</waitForPrevious>
@@ -237,7 +252,7 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1754601333502</time>
+        <time>1754741052197</time>
         <timezone>Europe/London</timezone>
       </lastModified>
       <pruningSettings>
